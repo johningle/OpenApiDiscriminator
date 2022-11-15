@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace OpenApiDiscriminator.Controllers;
 
@@ -9,12 +9,12 @@ namespace OpenApiDiscriminator.Controllers;
 /// </summary>
 [ApiController]
 [Route("[controller]")]
-[ApiExplorerSettings(GroupName = "private")]
-public class PrivateWeatherForecastController : ControllerBase
+[ApiExplorerSettings(GroupName = "public")]
+public class Public10DayWeatherForecastController : ControllerBase
 {
-    private readonly ILogger<PrivateWeatherForecastController> _logger;
+    private readonly ILogger<Public10DayWeatherForecastController> _logger;
 
-    public PrivateWeatherForecastController(ILogger<PrivateWeatherForecastController> logger)
+    public Public10DayWeatherForecastController(ILogger<Public10DayWeatherForecastController> logger)
     {
         _logger = logger;
     }
@@ -23,9 +23,10 @@ public class PrivateWeatherForecastController : ControllerBase
     /// Name the endpoints appropriately for their intended API group.
     /// By convention, using the same name in different controllers with Swashbuckle will produce a runtime error.
     /// </summary>
-    [HttpGet(Name = "GetPrivateWeatherForecast")]
+    [HttpGet(Name = "GetPublic10DayWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
+        // Call common domain logic to fulfill the request.
         return WeatherForecaster.GiveMe(10);
     }
 }
